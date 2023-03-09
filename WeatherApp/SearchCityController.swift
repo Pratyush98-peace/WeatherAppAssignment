@@ -10,7 +10,7 @@ import UIKit
 
 var array: [String] = []
 
-class SearchCityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchCityController: UIViewController {
     
     @IBOutlet weak var TableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -20,7 +20,7 @@ class SearchCityController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 }
 
-extension SearchCityController {
+extension SearchCityController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count
         
@@ -67,6 +67,6 @@ extension SearchCityController {
     }
     
     func pop() -> String? {
-      array.removeFirst()
+       array.removeFirst()
     }
 }

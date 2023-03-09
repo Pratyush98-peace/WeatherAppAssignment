@@ -8,10 +8,7 @@
 import UIKit
 import MapKit
 
-class WeatherMainViewController: UIViewController,
-                      WeatherGetterDelegate,
-                      UITextFieldDelegate
-{
+class WeatherMainViewController: UIViewController, WeatherGetterDelegate {
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
@@ -30,18 +27,7 @@ class WeatherMainViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         weather = WeatherGetter(delegate: self)
-        cityLabel.text = "simple weather"
-        weatherLabel.text = ""
-        maxTemp.text = ""
-        minTemp.text = ""
-        epochLabel.text = ""
-        weatherText.text = ""
-        getCityWeatherButton.isEnabled = true
-        if let city = city {
-            weather.getWeather(city: city)
-        } else {
-            getCurrentLocationData()
-        }
+        getLayout()
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,8 +41,20 @@ class WeatherMainViewController: UIViewController,
         self.modalPresentationStyle = .fullScreen
     }
     
-    
-    // MARK: WeatherGetterDelegate methods
+    func getLayout() {
+        cityLabel.text = "simple weather"
+        weatherLabel.text = ""
+        maxTemp.text = ""
+        minTemp.text = ""
+        epochLabel.text = ""
+        weatherText.text = ""
+        getCityWeatherButton.isEnabled = true
+        if let city = city {
+            weather.getWeather(city: city)
+        } else {
+            getCurrentLocationData()
+        }
+    }
     
     func didGetWeather(weather: WeatherDetail) {
         DispatchQueue.main.async {
@@ -94,9 +92,7 @@ class WeatherMainViewController: UIViewController,
         } else {
             weather.getWeather(city: "Nagpur")
         }
-        
     }
-    
 }
 
 
