@@ -34,7 +34,7 @@ extension SearchCityController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = self.TableView.cellForRow(at: indexPath) as! UITableViewCell
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "Main") as? ViewController
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "Main") as? WeatherMainViewController
         if let controller = controller {
             controller.city = cell.textLabel?.text
             self.present(controller,animated: true, completion: nil)
